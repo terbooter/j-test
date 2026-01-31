@@ -219,22 +219,46 @@ export class BlockService {
     switch (type) {
       case 'idea':
         // Для idea: обязательно body, опционально image и template, НЕ должно быть title
-        return (
+
+        // ASK Почему тогда в TIdeaContent template: (typeof ideaContentTemplates)[number];
+
+        // TODO Better solution is to use pure AJV with flag
+        // additionalProperties: false
+        // https://ajv.js.org/guide/typescript.html
+
+        const requiredIdea =
           'body' in content &&
           typeof (content as { body: unknown }).body === 'string' &&
-          !('title' in content) &&
-          !('items' in content)
-        );
+          !('title' in content);
+
+        if ('image' in content) {
+          return (
+            requiredIdea &&
+            (typeof (content as { image: unknown }).image === 'string' ||
+              content.image === null)
+          );
+        }
+
+        return requiredIdea;
 
       case 'article':
         // Для article: обязательно title и body, опционально image
-        return (
+
+        const requiredArticle =
           'title' in content &&
           'body' in content &&
           typeof (content as { title: unknown }).title === 'string' &&
-          typeof (content as { body: unknown }).body === 'string' &&
-          !('items' in content)
-        );
+          typeof (content as { body: unknown }).body === 'string';
+
+        if ('image' in content) {
+          return (
+            requiredArticle &&
+            (typeof (content as { image: unknown }).image === 'string' ||
+              content.image === null)
+          );
+        }
+
+        return requiredArticle;
 
       case 'checklist':
         // Для checklist: обязательно title и items
@@ -251,8 +275,7 @@ export class BlockService {
               'completed' in item &&
               typeof (item as { text: unknown }).text === 'string' &&
               typeof (item as { completed: unknown }).completed === 'boolean'
-          ) &&
-          !('body' in content)
+          )
         );
 
       default:
