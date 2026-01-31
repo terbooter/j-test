@@ -11,11 +11,15 @@ import {
   uuid,
 } from 'drizzle-orm/pg-core';
 import { TBlockContentType, TBlockType } from 'src/types/block';
+import { users } from '../users/schema';
 
 export const blocks = pgTable(
   'blocks',
   {
     id: uuid('id').primaryKey(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
     parent: uuid('parent_id').references((): AnyPgColumn => blocks.id, {
       onDelete: 'cascade',
     }),

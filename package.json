@@ -5,7 +5,9 @@
   "type": "commonjs",
   "scripts": {
     "dev": "tsx watch --clear-screen=false src/main.ts",
-    "prettier": "prettier --write \"src/**/*.ts\""
+    "prettier": "prettier --write \"src/**/*.ts\"",
+    "db:migrate": "drizzle-kit migrate",
+    "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
     "@faker-js/faker": "^9.8.0",
@@ -16,6 +18,7 @@
     "@types/date-fns": "^2.6.3",
     "@types/node-fetch": "^2.6.12",
     "awilix": "^12.0.5",
+    "bcrypt": "^6.0.0",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "dotenv": "^16.6.1",
@@ -23,6 +26,7 @@
     "drizzle-orm": "^0.44.5",
     "fastify": "^5.4.0",
     "fastify-plugin": "^5.0.1",
+    "jsonwebtoken": "^9.0.3",
     "postgres": "^3.4.7",
     "undici": "^7.15.0",
     "uuid": "^10.0.0",

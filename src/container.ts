@@ -2,6 +2,7 @@ import { createContainer, asClass, asFunction, asValue } from 'awilix';
 
 import { closeDatabase, initDb, TDatabaseConnection } from './db/connection';
 import { BlockService } from './services/block';
+import { AuthService } from './services/auth';
 
 const diContainer = createContainer({
   injectionMode: 'CLASSIC',
@@ -13,6 +14,7 @@ diContainer.register({
     .disposer(() => closeDatabase()),
   container: asValue(diContainer),
   blockService: asClass(BlockService),
+  authService: asClass(AuthService),
 });
 
 declare module '@fastify/awilix' {
@@ -20,6 +22,7 @@ declare module '@fastify/awilix' {
   interface Cradle {
     db: TDatabaseConnection;
     blockService: BlockService;
+    authService: AuthService;
   }
 }
 

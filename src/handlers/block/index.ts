@@ -5,6 +5,8 @@ import { BlockDeleteSchema, DeleteHandler } from './delete';
 import { GetByLinkHandler, BlockGetByLinkSchema } from './get-by-link';
 import { ListHandler, BlockListSchema } from './list';
 import { BlockUpdateSchema, UpdateHandler } from './update';
+import { AuthLoginSchema } from '../auth/_schema';
+import { AuthHandler } from '../auth';
 
 export const BlockHandlers = (fastify: FastifyInstance): void => {
   fastify.register(
@@ -29,6 +31,10 @@ export const BlockHandlers = (fastify: FastifyInstance): void => {
       fastify.delete('/block/:link', {
         schema: BlockDeleteSchema,
         handler: DeleteHandler,
+      });
+      fastify.post('/auth', {
+        schema: AuthLoginSchema,
+        handler: AuthHandler,
       });
 
       done();
