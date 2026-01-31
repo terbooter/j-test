@@ -1,0 +1,242 @@
+{
+  "info": {
+    "_postman_id": "9e3af3d9-33f4-4839-8529-8b8da175c8dd",
+    "name": "Jetna",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "3603977"
+  },
+  "item": [
+    {
+      "name": "/v1/block article",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440001\",\n  \"childs\": 2,\n  \"order\": 2,\n  \"type\": \"article\",\n  \"link\": \"article-456\",\n  \"content\": {\n    \"title\": \"How to Use JSON Schema\",\n    \"image\": \"a1b2c3d4-e5f6-7890-g1h2-i3j4k5l6m7n8\",\n    \"body\": \"Article content goes here...\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8080/v1/block",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "block"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/v1/block checklist",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440002\",\n  \"childs\": 0,\n  \"order\": 3,\n  \"type\": \"checklist\",\n  \"link\": \"checklist-789\",\n  \"content\": {\n    \"title\": \"Shopping List\",\n    \"items\": [\n      {\n        \"text\": \"Milk\",\n        \"completed\": false\n      },\n      {\n        \"text\": \"Eggs\",\n        \"completed\": true\n      }\n    ]\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8080/v1/block",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "block"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/v1/block idea",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"childs\": 0,\n  \"order\": 1,\n  \"type\": \"idea\",\n  \"link\": \"unique-link-123\",\n  \"content\": {\n    \"image\": \"550e8400-e29b-41d4-a716-446655440111\",\n    \"template\": \"top\",\n    \"body\": \"This is the main idea content.\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8080/v1/block",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "block"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/v1/block idea child",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"550e8400-e29b-41d4-a716-446655440777\",\n  \"childs\": 0,\n  \"order\": 1,\n  \"type\": \"idea\",\n  \"parent\": \"M1FHU7rmxl\",\n  \"link\": \"unique-link-777\",\n  \"content\": {\n    \"image\": \"550e8400-e29b-41d4-a716-446655440111\",\n    \"template\": \"top\",\n    \"body\": \"This is the main idea content.\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8080/v1/block",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "block"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get list",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8080/v1/block",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "block"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get one",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8080/v1/block/M1FHU7rmxl",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "block",
+            "M1FHU7rmxl"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"content\": {\n        \"body\": \"Article content goes here...\",\n        \"image\": \"a1b2c3d4-e5f6-7890-g1h2-i3j4k5l6m7n8\"\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8080/v1/block/M1FHU7rmxl",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "block",
+            "M1FHU7rmxl"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8080/v1/block/EnYkcLr5_a",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8080",
+          "path": [
+            "v1",
+            "block",
+            "EnYkcLr5_a"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
