@@ -51,6 +51,10 @@ export const createServer = async (
     reply.send({ status: 'ok' });
   });
 
+  server.get('/debug/routes', async () => {
+    return server.printRoutes({ commonPrefix: false });
+  });
+
   return {
     server,
     start: async (): Promise<void> => {
