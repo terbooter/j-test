@@ -6,9 +6,7 @@ const build = (): ReturnType<typeof createServer> => {
   return createServer({
     host: env.HOST,
     port: Number(env.PORT),
-    handlers: [
-      BlockHandlers,
-    ],
+    handlers: [BlockHandlers],
     middlewares: [],
   });
 };

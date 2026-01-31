@@ -29,14 +29,9 @@ export const blocks = pgTable(
     updatedAt: timestamp('updated_at').notNull(),
     deletedAt: timestamp('deleted_at'),
   },
-  blocks => [
+  (blocks) => [
     index('block_parent_idx')
-      .on(
-        blocks.parent,
-        blocks.deletedAt,
-        blocks.order,
-        blocks.id
-      )
+      .on(blocks.parent, blocks.deletedAt, blocks.order, blocks.id)
       .where(sql`parent_id IS NOT NULL`),
 
     index('block_link_idx').on(blocks.link),

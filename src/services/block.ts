@@ -33,9 +33,7 @@ export class BlockMoveError extends Error {
 }
 
 export class BlockService {
-  constructor(
-    private db: Promise<TDatabaseConnection>,
-  ) {}
+  constructor(private db: Promise<TDatabaseConnection>) {}
 
   createCursor(block: TBlock): string {
     return `${block.order}:${block.id}`;
@@ -89,12 +87,10 @@ export class BlockService {
   /**
    * Получение блока по ID
    */
-  async getById(
-    id: string
-  ): ReturnType<Awaited<typeof findById>> {
+  async getById(id: string): ReturnType<Awaited<typeof findById>> {
     try {
       const block = await findById(await this.db, id);
-      
+
       return block;
     } catch (error) {
       throw new Error(`Failed to get block: ${error}`);
@@ -106,10 +102,7 @@ export class BlockService {
   ): ReturnType<Awaited<typeof findByWorkspace>> {
     try {
       const parsedCursor = this.parseCursor(cursor ?? '');
-      const blocks = await findByWorkspace(
-        await this.db,
-        parsedCursor
-      );
+      const blocks = await findByWorkspace(await this.db, parsedCursor);
       return blocks;
     } catch (error) {
       throw new Error(`Failed to get blocks: ${error}`);
@@ -122,11 +115,7 @@ export class BlockService {
   ): ReturnType<Awaited<typeof findByWorkspace>> {
     try {
       const parsedCursor = this.parseCursor(cursor ?? '');
-      const blocks = await findByParent(
-        await this.db,
-        parentId,
-        parsedCursor
-      );
+      const blocks = await findByParent(await this.db, parentId, parsedCursor);
       return blocks;
     } catch (error) {
       throw new Error(`Failed to get blocks: ${error}`);
@@ -173,7 +162,7 @@ export class BlockService {
     }
   }
 
-  async deleteChilds(parent: TBlock,): Promise<boolean> {
+  async deleteChilds(parent: TBlock): Promise<boolean> {
     try {
       return (await deleteBlockChilds(await this.db, parent.id)) > 0;
     } catch (error) {
@@ -208,7 +197,7 @@ export class BlockService {
       Array.isArray((content as { items: unknown }).items)
     ) {
       return (content as { items: unknown[] }).items.every(
-        item =>
+        (item) =>
           typeof item === 'object' &&
           item !== null &&
           'text' in item &&
@@ -255,7 +244,7 @@ export class BlockService {
           typeof (content as { title: unknown }).title === 'string' &&
           Array.isArray((content as { items: unknown }).items) &&
           (content as { items: unknown[] }).items.every(
-            item =>
+            (item) =>
               typeof item === 'object' &&
               item !== null &&
               'text' in item &&

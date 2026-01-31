@@ -14,9 +14,7 @@ export const CreateHandler = async (
 
   let parent = null;
   if (request.body.parent != null && request.body.parent !== '') {
-    const parentBlock = await blockService.getByLink(
-      request.body.parent
-    );
+    const parentBlock = await blockService.getByLink(request.body.parent);
     if (parentBlock === null || parentBlock === undefined) {
       return reply.status(404).send({ error: 'not_found' });
     }

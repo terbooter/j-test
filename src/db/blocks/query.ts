@@ -61,7 +61,7 @@ export const findById = async (
   id: string
 ): Promise<TBlock | null> => {
   const [block] = await findByIdPrepared(db).execute({
-    id
+    id,
   });
   return block ?? null;
 };
@@ -71,7 +71,7 @@ export const findByLink = async (
   link: string
 ): Promise<TBlock | null> => {
   const [block] = await findByLinkPrepared(db).execute({
-    link
+    link,
   });
   return block ?? null;
 };
@@ -86,7 +86,6 @@ export const deleteBlock = async (
   });
   return result.id != null ? 1 : 0;
 };
-
 
 export const deleteBlockChilds = async (
   db: TDatabaseConnection,

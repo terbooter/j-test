@@ -53,12 +53,7 @@ export const findByIdPrepared = createLazyPrepare((db: TDatabaseConnection) =>
   db
     .select()
     .from(blocks)
-    .where(
-      and(
-        eq(blocks.id, sql.placeholder('id')),
-        isNull(blocks.deletedAt)
-      )
-    )
+    .where(and(eq(blocks.id, sql.placeholder('id')), isNull(blocks.deletedAt)))
     .limit(1)
 );
 
@@ -67,10 +62,7 @@ export const findByLinkPrepared = createLazyPrepare((db: TDatabaseConnection) =>
     .select()
     .from(blocks)
     .where(
-      and(
-        eq(blocks.link, sql.placeholder('link')),
-        isNull(blocks.deletedAt)
-      )
+      and(eq(blocks.link, sql.placeholder('link')), isNull(blocks.deletedAt))
     )
     .limit(1)
 );
@@ -98,11 +90,7 @@ export const deleteBlockPrepared = createLazyPrepare(
     db
       .update(blocks)
       .set({ deletedAt: sql`${sql.placeholder('deletedAt')}` })
-      .where(
-        and(
-          eq(blocks.id, sql.placeholder('id')),
-        )
-      )
+      .where(and(eq(blocks.id, sql.placeholder('id'))))
       .returning({ id: blocks.id, parent: blocks.parent })
 );
 
@@ -111,9 +99,7 @@ export const deleteBlockChildsPrepared = createLazyPrepare(
     db
       .update(blocks)
       .set({ deletedAt: sql`${sql.placeholder('deletedAt')}` })
-      .where(
-          eq(blocks.parent, sql.placeholder('parent'))
-      )
+      .where(eq(blocks.parent, sql.placeholder('parent')))
       .returning({ id: blocks.id })
 );
 

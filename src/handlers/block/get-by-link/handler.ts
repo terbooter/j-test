@@ -12,9 +12,7 @@ export const GetByLinkHandler = async (
   const blockService = request.server.diContainer.cradle.blockService;
 
   try {
-    const block = await blockService.getByLink(
-      request.params.link,
-    );
+    const block = await blockService.getByLink(request.params.link);
 
     if (block === null) {
       return reply.status(404).send({ error: 'not_found' });

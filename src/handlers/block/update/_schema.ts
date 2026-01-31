@@ -1,6 +1,5 @@
 import { blockTypes, ideaContentTemplates } from '../../../types/block';
 
-
 const blockItem = {
   type: 'object',
   description: 'Block item with content and metadata',
