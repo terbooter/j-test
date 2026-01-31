@@ -18,6 +18,9 @@ export const DeleteHandler = async (
 
     const deleted = await blockService.delete(block);
     if (deleted === true) {
+      if (block.parent) {
+        await blockService.updateCounters(block.parent);
+      }
       return reply.status(200).send();
     }
 

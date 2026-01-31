@@ -32,6 +32,11 @@ export const CreateHandler = async (
       request.server.log.error('Failed to create block');
       return reply.status(500).send({ error: 'server_error' });
     }
+
+    if (parent) {
+      await blockService.updateCounters(parent);
+    }
+
     return reply.status(201).send({ data: block });
   } catch (error) {
     if (error instanceof BlockValidationError) {

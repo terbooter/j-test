@@ -7,6 +7,7 @@ import {
   findByParent,
   findByWorkspace,
   updateContentBlock,
+  updateCounters,
 } from '../db/blocks/query';
 import { TDatabaseConnection } from '../db/connection';
 import { TBlock } from '../db/schema';
@@ -53,6 +54,14 @@ export class BlockService {
     if (isNaN(order) || id.length === 0) return null;
 
     return { order, id };
+  }
+
+  async updateCounters(blockId: string): Promise<void> {
+    try {
+      await updateCounters(await this.db, blockId);
+    } catch (error) {
+      throw new Error(`Failed to update block counters: ${error}`);
+    }
   }
 
   async create(data: {

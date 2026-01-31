@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import { v7 as uuidv7 } from 'uuid';
+import { sql } from 'drizzle-orm';
 
 import { TDatabaseConnection } from '../connection';
 
@@ -109,4 +110,18 @@ export const updateContentBlock = async (
     updatedAt: new Date().toISOString(),
   });
   return updatedBlock ?? null;
+};
+
+export const updateCounters = async (
+  db: TDatabaseConnection,
+  id: string
+): Promise<void> => {
+  await db.execute(sql`
+    UPDATE blocks
+    SET childs = (SELECT COUNT(*)
+                  FROM blocks AS child
+                  WHERE child.parent_id = ${id}
+                    AND child.deleted_at IS NULL)
+    WHERE id = ${id}
+  `);
 };
