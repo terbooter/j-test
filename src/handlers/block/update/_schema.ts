@@ -148,7 +148,9 @@ export const BlockUpdateSchema = {
                 description: 'Main text content of the block',
               },
             },
-            required: ['body'],
+            required: ['body', 'template'],
+            // Without template required, title cut for article type
+            additionalProperties: false,
           },
           {
             type: 'object',
@@ -170,6 +172,7 @@ export const BlockUpdateSchema = {
               },
             },
             required: ['title', 'body'],
+            additionalProperties: false,
           },
           {
             type: 'object',
@@ -197,6 +200,7 @@ export const BlockUpdateSchema = {
               },
             },
             required: ['title', 'items'],
+            additionalProperties: false,
           },
         ],
       },
